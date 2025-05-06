@@ -14,6 +14,7 @@ require('./config/db');
 
 const app = express();
 const userRoutes = require('./routes/authRoutes');
+const flowRoutes = require('./routes/userFlowRoutes');
 
 
 const server = http.createServer(app);
@@ -29,6 +30,7 @@ const io = new Server(server, {
 app.use(express.json());
 app.use(cors());
 app.use('/api', userRoutes);
+app.use('/api', flowRoutes);
 
 io.on('connection', (socket) => {
     console.log(`Client connected: ${socket.id}`);
